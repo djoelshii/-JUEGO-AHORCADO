@@ -1,0 +1,18 @@
+flowchart TD
+    Inicio --> DefinirPalabra[Elegir palabra secreta]
+    DefinirPalabra --> Preparar[Mostrar guiones: _ _ _ _]
+    Preparar --> IniciarIntentos[Intentos restantes = 6]
+    IniciarIntentos --> RecibirLetra[Pedir letra al jugador]
+    RecibirLetra --> Validar{¿Letra ya usada?}
+    Validar -->|Sí| RecibirLetra
+    Validar -->|No| Verificar{¿Está en la palabra?}
+    Verificar -->|Sí| Actualizar[Reemplazar guiones por letra]
+    Verificar -->|No| Reducir[Quitar 1 intento]
+    Actualizar --> ComprobarGanó{¿Se completó la palabra?}
+    Reducir --> ComprobarPerdió{¿Intentos = 0?}
+    ComprobarGanó -->|Sí| Ganaste[Mostrar: ¡Ganaste! 🎉]
+    ComprobarGanó -->|No| RecibirLetra
+    ComprobarPerdió -->|Sí| Perdiste[Mostrar: ¡Perdiste! La palabra era X]
+    ComprobarPerdió -->|No| RecibirLetra
+    Ganaste --> Fin
+    Perdiste --> Fin
